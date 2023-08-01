@@ -1,1 +1,8 @@
+#Κατεβάστε το zip στον φάκελο που αποθηκεύονται τα Android Studio Projects
+#Κάντε το import στο Android Studio
 
+#Πως κάνουμε import(Με βάση το CHATgpt)
+
+#To import the project back into Android Studio, simply select "File" > "New" > "Import Project" and choose the ZIP file you exported.
+#Keep in mind that exporting the project as a ZIP file does not include the Gradle wrapper or any external dependencies. 
+#When you import the project into another instance of Android Studio, it will download the necessary dependencies and set up the Gradle environment automatically.
