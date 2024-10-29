@@ -1,7 +1,10 @@
 <?php
 
-$ch = curl_init("https://ece.uowm.gr/feed.php");
-$fp = fopen("feed.txt","w");
+$feedToGet = $deps[$index]->getFeedLink();
+$feedText = $deps[$index]->getFeed();
+
+$ch = curl_init($feedToGet);
+$fp = fopen($feedText,"w");
 
 curl_setopt($ch, CURLOPT_FILE, $fp);
 curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -13,6 +16,5 @@ if(curl_error($ch)) {
 curl_close($ch);
 fclose($fp);
 
-printf("File 'getRss.php' loaded\n\n");
 
 ?>

@@ -1,9 +1,10 @@
 <?php
 
 
+$titles = $deps[$index]->getTitles();
+$dates = $deps[$index]->getDates();
+$links = $deps[$index]->getLinks();
 
-$API_KEY = 'OGE4NmVjNGYtZTUxNi00OWYyLTk3OTAtODA1ODBlZDhiZTll';
-$APP_ID = '9ffbaaf1-21ac-4e9e-a220-fbc6349f3ac8';
 
 // Initialize curl
 $ch = curl_init();
@@ -18,12 +19,17 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 
 for($i=0; $i<$count; $i++){
 	// Notification data to be sent
+
 	$notificationData = [
 		'app_id' => $APP_ID,
-		'headings' => ['en' => $titles[$i] ],
-    		'contents' => ['en' => $dates[$i] ],
-    		'included_segments' => ['All'], // You can specify target segments here
+		'headings' => ['en' => $deps[$index]->getSegment() . ' Ανακοίνωση'],
+    		'contents' => ['en' => $titles[$i] ],
+    		'included_segments' => [$deps[$index]->getSegment()],  // You can specify target segments here
+		'data' => array('Link' => $links[$i], 'Date' => $dates[$i], 'Place' => 'Home'),
+		'android_accent_color' => '800080',   // Optional: Set the notification accent color
+    		'small_icon' => 'logo_trans'
 	];
+
 
 	curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($notificationData));
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -50,7 +56,7 @@ for($i=0; $i<$count; $i++){
         		//echo 'Error Response: ' . $response;
     		}
 	}
-	sleep(5);
+	//sleep(5);
 }
 
 
